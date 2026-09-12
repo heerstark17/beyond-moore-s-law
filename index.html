@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Beyond Moore's Law — How Semiconductor Engineering Is Scaling After Transistor Shrinkage">
+  <title>Beyond Moore's Law | Heer Thakker & Dhruv Vaghela</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0d1b2a;
+      --panel-2: #10243a;
+      --text: #eef5ff;
+      --muted: #a7bad0;
+      --accent: #56b6ff;
+      --accent-2: #7c5cff;
+      --line: rgba(160, 200, 240, 0.16);
+      --shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+      --max: 980px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(86,182,255,.10), transparent 30%),
+        radial-gradient(circle at 85% 5%, rgba(124,92,255,.10), transparent 28%),
+        var(--bg);
+      line-height: 1.72;
+    }
+    .wrap { width: min(var(--max), calc(100% - 36px)); margin: 0 auto; }
+    header {
+      padding: 72px 0 38px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 7px 12px;
+      border: 1px solid rgba(86,182,255,.24);
+      border-radius: 999px;
+      color: #bfe5ff;
+      background: rgba(86,182,255,.07);
+      font-size: .82rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 18px 0 8px;
+      font-size: clamp(2.4rem, 7vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      max-width: 760px;
+    }
+    .byline { margin-top: 22px; font-weight: 700; color: #d8e6f5; }
+    .meta { color: var(--muted); font-weight: 500; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(7,17,31,.84);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; gap: 16px; overflow-x: auto; padding: 12px 0; }
+    nav a {
+      flex: 0 0 auto;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .9rem;
+    }
+    nav a:hover { color: var(--text); }
+    main { padding: 42px 0 80px; }
+    section { scroll-margin-top: 72px; margin-top: 54px; }
+    section:first-child { margin-top: 0; }
+    h2 {
+      font-size: clamp(1.45rem, 3vw, 2rem);
+      line-height: 1.2;
+      margin: 0 0 18px;
+      padding-bottom: 11px;
+      border-bottom: 1px solid var(--line);
+      color: #f5f9ff;
+    }
+    p { margin: 0 0 18px; color: #d6e1ee; }
+    .lead {
+      font-size: 1.08rem;
+      color: #e9f2fc;
+    }
+    figure {
+      margin: 30px 0 34px;
+      padding: 16px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    figure img { display: block; width: 100%; height: auto; border-radius: 9px; }
+    figcaption {
+      margin-top: 10px;
+      color: #556577;
+      font-size: .9rem;
+      line-height: 1.5;
+    }
+    .callout {
+      margin: 24px 0;
+      padding: 18px 20px;
+      background: linear-gradient(135deg, rgba(86,182,255,.10), rgba(124,92,255,.08));
+      border: 1px solid rgba(86,182,255,.18);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+    }
+    .equation {
+      margin: 18px 0 22px;
+      padding: 18px;
+      text-align: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 1.35rem;
+      background: #071725;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: #dff2ff;
+    }
+    .refs {
+      padding-top: 14px;
+    }
+    .refs ol { padding-left: 24px; color: #c9d8e7; }
+    .refs li { margin-bottom: 10px; }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0 44px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .back { color: #bfe5ff; text-decoration: none; }
+    @media (max-width: 700px) {
+      header { padding-top: 48px; }
+      .wrap { width: min(var(--max), calc(100% - 24px)); }
+      figure { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">ECE Student Article</div>
+      <h1>Beyond Moore's Law</h1>
+      <p class="subtitle">How Semiconductor Engineering Is Scaling After Transistor Shrinkage</p>
+      <div class="byline">Heer Thakker <span class="meta">•</span> Dhruv Vaghela<br><span class="meta">Electronics and Communication Engineering</span></div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#rule">Moore's Law</a>
+      <a href="#dennard">Dennard Scaling</a>
+      <a href="#limits">Physical Limits</a>
+      <a href="#devices">FinFET → GAA</a>
+      <a href="#packaging">Chiplets & 3D</a>
+      <a href="#ai">AI</a>
+      <a href="#future">What Comes Next?</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="rule">
+      <h2>1. The Rule That Defined Computing</h2>
+      <p class="lead">In 1965, Intel co-founder Gordon Moore made an observation that would come to define the entire trajectory of modern electronics: the number of transistors that could be economically packed onto an integrated circuit was doubling roughly every one to two years.</p>
+      <p>What began as an empirical curve-fit soon became an industry-wide mandate. Semiconductor companies, equipment vendors, and even national research agendas organized themselves around hitting the next node on schedule. Moore's Law was never a law of physics — it was a self-fulfilling roadmap, sustained by relentless investment in lithography, materials science, and process engineering.</p>
+      <p>For half a century this scaling rhythm delivered the exponential growth in compute performance that powered everything from personal computers to smartphones to today's data centers. But the physical and economic assumptions that made this doubling possible have eroded, and the semiconductor industry has had to reinvent how it delivers performance gains.</p>
+      <figure>
+        <img src="images/figure-1-transistor-count.png" alt="Graph showing growth in transistor count from 1971 to 2025 on a logarithmic scale">
+        <figcaption>Figure 1: Growth in transistor count per chip from 1971 to 2025, illustrating the decades-long exponential trend described by Moore's Law.</figcaption>
+      </figure>
+    </section>
+
+    <section id="dennard">
+      <h2>2. Why Smaller Transistors Changed Everything</h2>
+      <p>Shrinking a transistor is not merely about fitting more of them on a die. Robert Dennard's 1974 scaling theory showed that if a transistor's dimensions, voltage, and doping concentration were all scaled down by the same factor, its power density would remain constant while its switching speed increased. This meant each new process generation delivered smaller, faster, and more power-efficient transistors simultaneously — a rare engineering trifecta.</p>
+      <p>This compounding benefit is why the industry could offer higher clock speeds, lower power consumption, and lower cost per transistor all at once, generation after generation. Architects could add more logic, more cache, and more parallelism without paying a proportional power or cost penalty. Dennard scaling, not Moore's Law alone, was the real engine behind decades of performance growth.</p>
+    </section>
+
+    <section>
+      <h2>3. When Dennard Scaling Broke Down</h2>
+      <p>By the mid-2000s, Dennard scaling had effectively stalled. As transistor channel lengths shrank below roughly 90–65 nanometers, supply voltage could no longer be reduced at the same pace without transistors leaking current even while switched off. Threshold voltage cannot be scaled indefinitely without sacrificing the on/off ratio that makes a transistor useful as a switch.</p>
+      <p>The result was that power density began to rise with each new node instead of staying flat. Clock frequencies, which had climbed from megahertz to multiple gigahertz through the 1990s, plateaued around 3–5 GHz and have stayed there ever since, even as transistor counts kept climbing. This divergence is the origin of the so-called 'power wall' and the shift toward multi-core processors, since simply cranking clock speed higher was no longer power-efficient.</p>
+      <figure>
+        <img src="images/figure-2-clock-frequency.png" alt="Chart comparing clock frequency plateau with continued relative transistor density scaling from 1990 to 2025">
+        <figcaption>Figure 2: Clock frequency plateaus after the mid-2000s even as relative transistor density continues to climb, illustrating the breakdown of Dennard scaling.</figcaption>
+      </figure>
+      <p>The relationship can be captured in the classic dynamic power equation, which shows why voltage — not just frequency — dominates power consumption:</p>
+      <div class="equation">P = C · V² · f</div>
+      <p>where P is dynamic power dissipation, C is switched capacitance, V is supply voltage, and f is clock frequency. Because power scales with the square of voltage, once V stopped shrinking, every further increase in frequency or density translated almost directly into higher power density — a cost the industry could no longer hide.</p>
+    </section>
+
+    <section id="limits">
+      <h2>4. The Physical Limits of Shrinking</h2>
+      <p>As feature sizes approached the atomic scale, new physical effects began to dominate device behavior. Quantum mechanical tunneling allows electrons to pass through gate oxides that are only a few atoms thick, causing leakage current even when a transistor is nominally off. Short-channel effects make it difficult for the gate to maintain full control over the channel once the channel length becomes comparable to the depletion region width, degrading the sharpness of the on/off switching behavior.</p>
+      <p>Variability also becomes a serious concern: at these dimensions, the exact placement of a handful of dopant atoms can measurably shift a transistor's threshold voltage, making manufacturing yield harder to guarantee. Heat removal compounds the challenge, since power that used to dissipate over a larger area must now be extracted from a much denser, hotter volume of silicon. These are not engineering inconveniences to be optimized away — they are consequences of operating close to fundamental physical limits.</p>
+    </section>
+
+    <section id="devices">
+      <h2>5. From Planar MOSFETs to FinFETs and GAA</h2>
+      <p>The industry's first major structural response to short-channel effects was to abandon the flat, planar transistor altogether. The FinFET, introduced commercially around the 22-nanometer node, raises the channel into a thin vertical 'fin' and wraps the gate around three of its four sides. This dramatically improves electrostatic control of the channel, suppressing leakage and enabling continued voltage scaling that planar devices could no longer support.</p>
+      <p>More recently, leading foundries have moved to gate-all-around (GAA) architectures, including nanosheet and nanowire transistors, where the gate fully encircles the channel on all sides. This offers even tighter electrostatic control than a FinFET and allows channel width to be tuned by stacking multiple sheets, giving designers a new lever for balancing performance and power that pure lithographic shrinkage no longer provides.</p>
+      <figure>
+        <img src="images/figure-3-transistor-architecture.png" alt="Diagram comparing planar MOSFET, FinFET and gate-all-around transistor structures">
+        <figcaption>Figure 3: Structural evolution of the transistor gate from a single-sided planar MOSFET, to the three-sided wrap of a FinFET, to the full electrostatic control of a gate-all-around (GAA) nanosheet device.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>6. When Economics Becomes a Limitation</h2>
+      <p>Even where further shrinking remains physically possible, it is increasingly uneconomical. Extreme ultraviolet (EUV) lithography systems needed to pattern sub-10-nanometer features cost well over 150 million dollars per machine, and leading-edge fabs now cost tens of billions of dollars to build. Mask sets for advanced nodes can run into tens of millions of dollars, putting a leading-edge chip design out of reach for all but the highest-volume products.</p>
+      <p>This has given rise to a well-known observation sometimes called 'Moore's Second Law,' or Rock's Law: the capital cost of building a semiconductor fabrication plant roughly doubles every four years. At some point, the cost per transistor stops falling even though the transistor count keeps rising, which erodes the original economic incentive that made aggressive node shrinkage worthwhile for a broad range of products.</p>
+    </section>
+
+    <section id="packaging">
+      <h2>7. Scaling Up Instead of Just Scaling Down: Chiplets &amp; 3D Integration</h2>
+      <p>Rather than continuing to chase ever-smaller monolithic dies, the industry has increasingly turned to packaging innovation as a new scaling axis. Chiplet architectures break a large processor into smaller functional dies — compute, I/O, memory controllers — manufactured on whichever process node suits each block best, then reassembled on a single package using high-density interconnects. This improves yield, since a defect on a small chiplet wastes far less silicon than a defect on one giant monolithic die, and it allows designers to mix process technologies within a single product.</p>
+      <p>3D integration takes this further by stacking dies vertically and connecting them with through-silicon vias (TSVs) or hybrid bonding, dramatically shortening the interconnect distance between logic and memory layers. AMD's 3D V-Cache, Intel's Foveros packaging, and high-bandwidth memory (HBM) stacks used in AI accelerators are all commercial examples of this 'scaling up and out' philosophy, which decouples system-level performance growth from transistor-level shrinkage.</p>
+    </section>
+
+    <section>
+      <h2>8. The Interconnect and Memory Bottleneck</h2>
+      <p>As transistors have shrunk, the wires connecting them have not kept pace. Interconnect resistance and capacitance scale unfavorably at smaller dimensions, so a growing share of a chip's delay and power budget is now spent moving data across the die rather than switching transistors. This is often summarized as the shift from a 'transistor-limited' to a 'wire-limited' design regime.</p>
+      <p>The gap between processor speed and memory bandwidth — the long-standing 'memory wall' — has become an even more acute bottleneck for data-intensive workloads. Techniques such as high-bandwidth memory, near-memory computing, and placing memory dies directly on top of compute dies via 3D stacking are all attempts to reduce the physical distance data must travel, since in modern systems, moving a bit of data can consume far more energy than computing on it.</p>
+    </section>
+
+    <section id="ai">
+      <h2>9. How AI Is Changing Semiconductor Design</h2>
+      <p>Artificial intelligence workloads have reshaped chip design priorities in two directions at once. First, AI has become a major consumer of silicon: training and running large models demands enormous parallel matrix-multiply throughput and memory bandwidth, driving specialized accelerator architectures — GPUs, TPUs, and custom NPUs — that would have been considered niche just a decade ago. Second, and less visibly, AI has become a tool within the design process itself. Machine learning is now used for chip floorplanning, standard-cell placement, and routing optimization, tasks that traditionally consumed months of engineer-hours.</p>
+      <p>Google's use of reinforcement learning to help floorplan sections of its TPU chips is a widely cited example of this shift. As designs grow more complex and process nodes offer diminishing intuitive returns, AI-assisted electronic design automation (EDA) is becoming a meaningful lever for compressing design cycles and finding non-obvious layout optimizations that human designers might not explore.</p>
+    </section>
+
+    <section id="future">
+      <h2>10. Beyond Moore's Law: What Comes Next?</h2>
+      <p>The semiconductor roadmap has effectively split into several parallel tracks rather than a single shrinking curve. Continued device-level innovation — GAA transistors, complementary FET (CFET) structures that stack n-type and p-type devices vertically, and new channel materials such as 2D semiconductors — will keep pushing density modestly higher. At the same time, packaging-level integration through chiplets and 3D stacking is emerging as a comparably important lever for system performance.</p>
+      <p>Longer term, more exploratory paths include photonic interconnects to move data with light instead of electrons, neuromorphic architectures that borrow computational principles from biological neurons, and early-stage quantum computing for specific problem classes. None of these fully replace transistor scaling in the near term; instead, the industry appears headed toward a heterogeneous future where architecture, packaging, and materials innovation jointly deliver the performance gains that used to come from lithography alone. Moore's Law, in its literal transistor-counting form, may be slowing — but the underlying goal of exponential compute growth is very much still being pursued, just along more diverse engineering paths.</p>
+      <div class="callout"><strong>Central idea:</strong> the end of easy transistor scaling is not the end of semiconductor progress. Performance gains are increasingly coming from device architecture, packaging, memory systems, specialized accelerators and new materials working together.</div>
+    </section>
+
+    <section class="refs">
+      <h2>References</h2>
+      <ol>
+        <li>G. E. Moore, "Cramming More Components onto Integrated Circuits," Electronics, vol. 38, no. 8, 1965.</li>
+        <li>R. H. Dennard et al., "Design of Ion-Implanted MOSFET's with Very Small Physical Dimensions," IEEE Journal of Solid-State Circuits, 1974.</li>
+        <li>International Roadmap for Devices and Systems (IRDS), IEEE, latest edition.</li>
+        <li>Intel, TSMC, and Samsung public foundry technology disclosures on FinFET and GAA (nanosheet) process nodes.</li>
+        <li>N. P. Jouppi et al., "In-Datacenter Performance Analysis of a Tensor Processing Unit," ISCA, 2017.</li>
+        <li>J. M. Rabaey, A. Chandrakasan, B. Nikolic, <em>Digital Integrated Circuits: A Design Perspective</em>, Prentice Hall.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="back" href="#">Back to top</a>
+    </div>
+  </footer>
+</body>
+</html>
